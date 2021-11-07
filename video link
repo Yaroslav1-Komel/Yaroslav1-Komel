@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>video</title>
+ </head>
+<div id="movie-bg">
+<video autoplay muted loop poster="video/video-1636240760.mp4" id="myVideo">
+<source src="video/video-1636240760.mp4" type="video/mp4">
+</video>
+</div>
+</head>
+<a href="raspberry pi connect to power and router.png"
+   style="display: block; width: 300px; height: 100px;" id="player"></a>
+<script type="text/javascript">
+
+</script>
+
+ <body>
+ <form method="get" action="http://localhost:63342/pythonProject%20%20%20Test%20HTML/index.html?">
+    <button type="submit">Return back to main page</button>
+</form>
+ <body>
+</body>
+</body>
+ </body>
+</html>
