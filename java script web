@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning JavaScript 01a</title>
+</head>
+<body>
+     <h2> JavaScript in Body </h2>
+     <p id="demo"></p>
+     <script type="text/javascript">
+         document.getElementById("demo").innerHTML = "My First JavaScript";
+     </script>
+<form method="get" action="http://localhost:63342/pythonProject%20%20%20Test%20HTML/index.html?">
+    <button type="submit">Return back to main page</button>
+</form>
+</body>
+</html>
