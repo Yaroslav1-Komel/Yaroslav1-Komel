@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Изображения-ссылки</title>
+ </head>
+ <body>
+ <form method="get" action="http://localhost:63342/pythonProject%20%20%20Test%20HTML/index.html?">
+    <button type="submit">Return back to main page</button>
+</form>
+   <img style="with:500px; height: 500px" src="image/404.png" alt="image">
+ </body>
+</html>
