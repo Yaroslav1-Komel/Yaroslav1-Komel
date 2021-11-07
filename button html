@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IT student experiment </title>
+</head>
+<body>
+<form>
+    ...
+    <button type="submit" name="action" value="update">Start</button>
+    <button type="submit" name="action" value="delete">Delete</button>
+    <button type="submit" name="action" value="update">Update</button>
+    <button type="submit" name="action" value="delete">Stop </button>
+   <form action="" method="get">
+
+    <input type="submit" name="sb" value="One">
+    <input type="submit" name="sb" value="Two">
+    <input type="submit" name="sb" value="Three">
+
+</form>
+
+
+</form>
+<form method="get" action="http://localhost:63342/pythonProject%20%20%20Test%20HTML/index.html?">
+    <button type="submit">Return back to main page</button>
+
+</body>
+</html>
