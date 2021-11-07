@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> </title>
+</head> Den website er mit !</head>
+<body>
+<h1> Welcome Yaroslav Komel </h1>
+<p>My First site .</p>
+<p> I like to play with it;) .</p>
+<p> My First Web page         </p>
+<p>First three link to the global web page, the next to the local page  </p>
+<h2>Hello my friends, its faimost web sites  ;) </h2>
+<p><a href="https://github.com/"> Github</a></p>
+<p><a href="https://www.google.com/">Google</a></p>
+<p><a href="https://eaaa.instructure.com/courses/13300"> Canvas</a></p>
+<p><a href="http://localhost:63342/pythonProject%20%20%20Test%20HTML/
+button%202.html?_ijt=1d0dmipnmjc2bp0vqk0r1kofaj&_ij_reload=RELOAD_ON_SAVE"> Button  </a></p>
+<p><a href="http://localhost:63342/pythonProject%20%20%20Test%20HTML/
+pictures.html?_ijt=1d0dmipnmjc2bp0vqk0r1kofaj&_ij_reload=RELOAD_ON_SAVE"> Pictures</a></p>
+<p><a href="http://localhost:63342/pythonProject%20%20%20Test%20HTML/
+java%20skript%201%20.html?_ijt=1d0dmipnmjc2bp0vqk0r1kofaj&_ij_reload=RELOAD_ON_SAVE"> Java skript </a></p>
+<p><a href="http://localhost:63342/pythonProject%20%20%20Test%20HTML/
+tablica.html?_ijt=1d0dmipnmjc2bp0vqk0r1kofaj&_ij_reload=RELOAD_ON_SAVE "> Tabel</a></p>
+
+<p><a href="http://localhost:63342/pythonProject%20%20%20Test%20HTML/
+video%20link.html?_ijt=a5jrsir6coqu67vbthuftgjd4m&_ij_reload=RELOAD_ON_SAVE "> Video</a></p>
+<form method="get" action="http://localhost:63342/pythonProject%20%20%20Test%20HTML/index.html?">
+    <button type="submit">Return back to main page</button>
+</form>
+<h2> This is the place for your advertisement </h2>
+</body>
+</html>
