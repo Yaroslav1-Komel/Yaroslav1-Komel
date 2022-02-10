@@ -1,0 +1,172 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@Yaroslav1-Komel 
+michael-045
+/
+robocarSem2
+Private
+Code
+Issues
+Pull requests
+Actions
+Projects
+Security
+Insights
+robocarSem2/Robocar_remote_control_C
+@Yaroslav1-Komel
+Yaroslav1-Komel Update Robocar_remote_control_C
+Latest commit dca4c58 7 hours ago
+ History
+ 1 contributor
+133 lines (126 sloc)  3.5 KB
+   
+
+//#include <ESP8266WiFi.h>   commented
+#include <WiFi.h>  //new
+#include <PubSubClient.h>
+int const Right_Mot_Backw_Pin4 = 15;
+int const Right_Mot_Forw_Pin3 = 2;
+int const Left_Mot_Backw_Pin2 = 13;
+int const Left_Mot_Forw_Pin1 = 12;
+
+
+// Update these with values suitable for your network.
+const char* ssid = "ITEK 2nd";
+const char* password = "Four_Sprints_F21v";
+const char* mqtt_server = "10.120.0.201";
+const char* inTopic = "group1/test";
+
+
+//const char* mqtt_server = "10.120.0.21";
+WiFiClient espClient;
+PubSubClient client(espClient);
+long lastMsg = 0;
+char msg[50];
+int value = 0;
+void setup_wifi() {
+  delay(10);
+  // We start by connecting to a WiFi network
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  randomSeed(micros());
+  Serial.println("");
+  Serial.println("WiFi connected");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+}
+void callback(char* topic, byte* payload, unsigned int length) {
+  Serial.print("Robocar is online [");
+  Serial.print(topic);
+  Serial.print("] ");
+  for (int i = 0; i < length; i++) {
+    Serial.print((char)payload[i]);
+  }
+  Serial.println();
+  
+ 
+  if ((char)payload[0] == 'W') {
+       digitalWrite(12,HIGH);
+       digitalWrite(13,LOW);
+       digitalWrite(2,HIGH);
+       digitalWrite(15,LOW);
+     }  
+    if ((char)payload[0] == 'S') {
+       digitalWrite(12,LOW);
+       digitalWrite(13,HIGH);
+       digitalWrite(2,LOW);
+       digitalWrite(15,HIGH);
+      } 
+    if ((char)payload[0] == 'A') {
+       digitalWrite(12,LOW);
+       digitalWrite(13,LOW);
+       digitalWrite(2,HIGH);
+       digitalWrite(15,LOW);
+       }
+         if ((char)payload[0] == 'D') {
+       digitalWrite(12,HIGH);
+       digitalWrite(13,LOW);
+       digitalWrite(2,LOW);
+       digitalWrite(15,LOW);
+  } 
+}
+void reconnect() {
+  // Loop until we're reconnected
+  while (!client.connected()) {
+    Serial.print("Attempting MQTT connection...");
+    // Create a random client ID
+    String clientId = "ESP32Client-";
+    clientId += String(random(0xffff), HEX);
+    // Attempt to connect
+    if (client.connect(clientId.c_str())) {
+      Serial.println("connected");
+      // Once connected, publish an announcement...
+      client.publish("outTopic", "hello world");
+      // ... and resubscribe
+      client.subscribe(inTopic);
+    } else {
+      Serial.print("failed, rc=");
+      Serial.print(client.state());
+      Serial.println(" try again in 5 seconds");
+      // Wait 5 seconds before retrying
+      delay(5000);
+    }
+  }
+}
+void setup() {
+  pinMode(Left_Mot_Forw_Pin1,OUTPUT);
+  pinMode(Left_Mot_Backw_Pin2,OUTPUT);
+  pinMode(Right_Mot_Forw_Pin3,OUTPUT);
+  pinMode(Right_Mot_Backw_Pin4,OUTPUT);
+        digitalWrite(Left_Mot_Forw_Pin1,LOW);
+        digitalWrite(Left_Mot_Backw_Pin2,LOW);
+        digitalWrite(Right_Mot_Forw_Pin3,LOW);
+        digitalWrite(Right_Mot_Backw_Pin4,LOW);
+  Serial.begin(115200);
+  setup_wifi();
+  client.setServer(mqtt_server, 1883);
+  client.setCallback(callback);
+}
+void loop() {
+  if (!client.connected()) {
+    reconnect();
+  }
+  long now = millis();
+   client.loop();
+  if (millis() - now > 7)
+  {
+      Serial.print("duration of  mqtt.loop()  is  : milisec  ->");
+       Serial.println(millis() - now);
+  }
+  now = millis();
+  if (now - lastMsg > 20000) {
+    lastMsg = now;
+    ++value;
+    snprintf (msg, 50, "hello world #%ld", value);
+    Serial.print("Publish message: ");
+    Serial.println(msg);
+    client.publish("outTopic", msg);
+  }
+}
+© 2022 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
