@@ -1,0 +1,95 @@
+from tkinter import *
+
+listMaterials = []
+class Realise(Frame):
+    def borrow(self):
+        id_nr = self.id_entry.get()
+        print("id to borrow: " + id_nr)
+        # with the correct ID and update the object, and borrow material.
+
+    def hand_in(self):
+        id_nr = self.hand_in_entry.get()
+        print("id to be hand_in: " + id_nr)
+        # with the correct ID and then update that object and hand in material
+
+    def Search_i_listen(self):
+        search_text = self.entry.get()
+        print("Search the list: "+search_text)
+        #  Search through listen material
+
+    def show_the_full_list(self):
+        print("View full list")
+        #The line below deletes the entire list in the GUI
+        # It be useful elsewhere .....
+        self.listGui.delete('1.0', END)
+        # Entire list of materieals again
+
+    def create_widgets(self):
+        frame = Frame(self)
+        self.winfo_toplevel().title("Library modern")
+
+        # definition of quit button
+        self.QUIT = Button(frame, text="QUIT")
+        self.QUIT["fg"] = "red"
+        self.QUIT["command"] = self.quit
+        self.QUIT.pack({"side": "left"})
+
+        # definition and mapping of show whole list button
+        self.visListe = Button(frame,text="View full list")
+        self.visListe["command"] = self.show_the_full_list
+        self.visListe.pack({"side": "left"})
+
+        # definition of input Search field.
+        self.L1 = Label(frame, text="Search detail")
+        self.L1.pack(side=LEFT)
+        self.entry = Entry(frame, bd=3)
+        self.entry.pack(side=LEFT)
+
+        # definition og mapping af Search button.
+        self.SearchBut = Button(frame, text="Search the list")
+        self.SearchBut["command"] = self.Search_i_listen
+        self.SearchBut.pack({"side": "left"})
+
+        # definition af ID input feltet to borrow
+        self.L1 = Label(frame, text="ID for borrow")
+        self.L1.pack(side=LEFT)
+        self.id_entry = Entry(frame, bd=3)
+        self.id_entry.pack(side=LEFT)
+
+        # definition af borrow button og mapping to the function.
+        self.borrowBut = Button(frame, text="borrow")
+        self.borrowBut["command"] = self.borrow
+        self.borrowBut.pack({"side": "left"})
+
+        # input field to hand in.
+        self.L1 = Label(frame, text="ID for hand in:")
+        self.L1.pack(side=LEFT)
+        self.hand_in_entry = Entry(frame, bd=3)
+        self.hand_in_entry.pack(side=LEFT)
+
+        # definition og mapping af hand_in button
+        self.hand_inBut = Button(frame, text="hand in")
+        self.hand_inBut["command"] = self.hand_in
+        self.hand_inBut.pack({"side": "left"})
+
+        # Here we define a Text widget
+        # can see how the list of material runs
+        # through and the toString method gets called and so stays
+        # inserted a new line in the Text widget
+        self.listGui = Text(self, width=150)
+        for Materials in listMaterials:
+            self.listGui.insert(INSERT, materiale.toString()+"\n")
+        frame.pack()
+        self.listGui.pack()
+
+    # This constructor is run when the program starts
+    # and Search for all our widgets to be created.
+    def __init__(self, master=None):
+        Frame.__init__(self, master)
+        self.pack()
+        self.create_widgets()
+
+
+root = Tk()
+app = Realise(master=root)
+app.mainloop()
