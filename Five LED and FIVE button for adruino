@@ -1,0 +1,99 @@
+const int LED1 = 12; //Red wire
+const int LED2 = 11; // Yellow wire
+const int LED3 = 6; // yellow wire
+const int LED4 = 8; // blue wire
+const int LED5 = 10;// white wire
+const int Button1 = 4; // white wire
+const int Button2 = 3; // white wire
+const int Button3 = 2; // blue wire
+const int Button4 = 5; // orange wire
+const int Button5 = 7; // green wire
+
+int Task_A_State = 0;
+int Task_B_State = 0;
+int Task_C_State = 0;
+int Task_D_State;       // = 0;
+int incomingbyte;       // = 0; 
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(LED1, OUTPUT);
+  pinMode(LED2, OUTPUT);
+  pinMode(LED3, OUTPUT);
+  pinMode(LED4, OUTPUT);
+  pinMode(Button1, INPUT_PULLUP);
+  pinMode(Button2, INPUT_PULLUP);
+  pinMode(Button3, INPUT_PULLUP);
+  pinMode(Button4, INPUT_PULLUP);
+  pinMode(Button5, INPUT_PULLUP);
+  Serial.begin(9600);
+  
+  }
+void Task_B()
+  {
+  if (digitalRead(Button1) == LOW && Task_B_State == 0)
+  {
+    digitalWrite(LED1, HIGH);
+    Task_B_State = 1;
+    Serial.println("LED1 on.");
+  }
+  if (digitalRead(Button2) == LOW && Task_B_State == 1)
+  {
+    digitalWrite(LED2, HIGH);
+    Task_B_State = 2;
+    Serial.println("LED2 on.");
+  }
+  if (digitalRead(Button3) == LOW && Task_B_State == 2)
+  {
+    digitalWrite(LED1, LOW);
+    digitalWrite(LED2, LOW);
+    Task_B_State = 0;
+    Serial.println("LED1,LED2 off.");
+  } 
+  }
+void Task_A()
+  {
+  if (digitalRead(Button4) == LOW && Task_A_State == 0)
+  {
+    digitalWrite(LED3, HIGH);
+    Task_A_State = 1;
+    Serial.println("LED3 on.");
+  }
+  if (digitalRead(Button5) == LOW && Task_A_State == 1)
+  {
+    digitalWrite(LED3, LOW);
+    Task_A_State = 0;
+    Serial.println("LED3 off.");
+  }
+  }
+void Task_C()
+  {
+ digitalWrite(LED4, HIGH); // Led on
+ delay(250);
+  digitalWrite(LED4, LOW); // Led off
+  delay(250);
+  
+  }
+void Task_D()
+{
+  incomingbyte = Serial.read();  //nonblocking read
+//      Serial.write(incomingbyte);  //write for debugging
+//      Serial.print("  ");
+//      Serial.println(incomingbyte);
+  if (incomingbyte == '0')
+    digitalWrite(LED5,LOW );    // turn the LED off by making the voltage LOW
+    
+  if (incomingbyte =='1')
+    digitalWrite(LED5,HIGH );    // turn the LED off by making the voltage LOW
+   
+}
+
+void loop()
+  {
+  Task_A();
+  Task_B();
+  Task_C();
+  Task_D();
+ 
+ 
+  }
